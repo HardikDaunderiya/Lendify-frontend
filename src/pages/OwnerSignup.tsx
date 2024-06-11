@@ -39,7 +39,7 @@ function OwnerSignup() {
 
   return (
     <div>
-      <SignupForm onSubmit={handleSubmit} title={"Investor Signup"} />
+      <SignupForm onSubmit={handleSubmit} title={"Owner Signup"} />
     </div>
   );
 }

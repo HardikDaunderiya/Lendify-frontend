@@ -23,33 +23,15 @@ const loginSchema = z.object({
   password: z.string().min(6, "Password must be at least 6 characters long"),
 });
 
-export function Login() {
+export function Login({ title, onSubmit }) {
   const form = useForm({
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = async (data) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:8000/api/v1/users/login",
-        {
-          user_email: String(data.email),
-          user_password: String(data.password),
-        }
-      );
-      console.log("Login successful:", response.data);
-    } catch (error) {
-      console.error(
-        "Login failed:",
-        error.response ? error.response.data : error.message
-      );
-    }
-  };
-
   return (
     <div className="flex items-center justify-center min-h-screen ">
       <div className="w-full max-w-md p-8 space-y-6  rounded-lg border bg-card text-card-foreground shadow-sm">
-        <h2 className="text-2xl font-bold text-center">Login</h2>
+        <h2 className="text-2xl font-bold text-center">{title}</h2>
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
