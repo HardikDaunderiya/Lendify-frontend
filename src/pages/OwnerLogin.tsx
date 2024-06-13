@@ -1,25 +1,53 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { login, reset } from "@/store/auth/authSlice"; // Ensure correct paths
 import Login from "@/components/Login";
-import axios from "axios";
-import React from "react";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { useToast } from "@/components/ui/use-toast";
+import { LoadingSpinner } from "@/components/ui/LoadingSpinnet";
 
 const OwnerLogin = () => {
-  const onSubmit = async (data) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:8000/api/v1/users/login",
-        {
-          user_email: String(data.email),
-          user_password: String(data.password),
-        }
-      );
-      console.log("Login successful:", response.data);
-    } catch (error) {
-      console.error(
-        "Login failed:",
-        error.response ? error.response.data : error.message
-      );
+  const { user, isLoading, isError, isSuccess, message } = useAppSelector(
+    (state) => state.auth
+  );
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (isError == true) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: message,
+      });
     }
+    if (isSuccess && user) {
+      toast({
+        variant: "sucessfull",
+        title: "Success",
+        description: message,
+      });
+      //Navigate to the next route over here
+      // navigate("/next-route"); // Adjust the route as necessary
+    }
+
+    dispatch(reset());
+  }, [user, isLoading, isError, isSuccess, message, dispatch, navigate, toast]);
+
+  const onSubmit = (data) => {
+    const userData = {
+      user_email: String(data.email),
+      user_password: String(data.password),
+    };
+    dispatch(login(userData));
   };
+
+  if (isLoading) {
+    console.log("Loading....");
+    return <LoadingSpinner />;
+  }
+
   return (
     <div>
       <Login title={"Owner Login"} onSubmit={onSubmit} />

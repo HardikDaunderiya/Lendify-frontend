@@ -26,6 +26,10 @@ const loginSchema = z.object({
 export function Login({ title, onSubmit }) {
   const form = useForm({
     resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
 
   return (

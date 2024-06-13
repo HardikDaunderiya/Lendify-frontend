@@ -10,11 +10,13 @@ import InvestorLogin from "./pages/InvestorLogin";
 import OwnerLogin from "./pages/OwnerLogin";
 import BusinessFeed from "./components/BusinessFeed";
 import Business from "./components/Business";
+import { Toaster } from "./components/ui/toaster";
 // import Header from "./components/Header";
 
 const App = () => {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <Toaster />
       <Header />
       {/* <Header /> */}
       <Routes>
