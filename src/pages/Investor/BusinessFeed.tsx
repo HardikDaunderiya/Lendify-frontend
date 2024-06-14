@@ -3,7 +3,6 @@
  * @see https://v0.dev/t/3yGtTFW6vsi
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
-"use client";
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";

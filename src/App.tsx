@@ -1,31 +1,32 @@
-import React from "react";
-import Login from "./components/Login";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import InvestorSignup from "./pages/InvestorSignup";
-import OwnerSignup from "./pages/OwnerSignup";
+import InvestorSignup from "./pages/Investor/InvestorSignup";
+import OwnerSignup from "./pages/Owner/OwnerSignup";
 import Header from "./components/Header";
-import InvestorLogin from "./pages/InvestorLogin";
-import OwnerLogin from "./pages/OwnerLogin";
-import BusinessFeed from "./components/BusinessFeed";
+import InvestorLogin from "./pages/Investor/InvestorLogin";
+import OwnerLogin from "./pages/Owner/OwnerLogin";
+import BusinessFeed from "./pages/Investor/BusinessFeed";
 import Business from "./components/Business";
 import { Toaster } from "./components/ui/toaster";
-// import Header from "./components/Header";
+import { ProtectedInvestorRoutes } from "./components/ProtectedInvestorRoutes"; // Ensure the correct import path
 
+console.log(localStorage.getItem("user"));
 const App = () => {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Toaster />
       <Header />
-      {/* <Header /> */}
       <Routes>
         <Route path="/investor/login" element={<InvestorLogin />} />
-        <Route path="/investor/feed" element={<BusinessFeed />} />
-        <Route path="/investor/business/id" element={<Business />} />
+        <Route path="/investor/signup" element={<InvestorSignup />} />
+
+        <Route element={<ProtectedInvestorRoutes />}>
+          <Route path="/investor/feed" element={<BusinessFeed />} />
+          <Route path="/investor/business/id" element={<Business />} />
+        </Route>
 
         <Route path="/owner/login" element={<OwnerLogin />} />
-        <Route path="/investor/signup" element={<InvestorSignup />} />
         <Route path="/owner/signup" element={<OwnerSignup />} />
       </Routes>
     </ThemeProvider>

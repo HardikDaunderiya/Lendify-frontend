@@ -12,7 +12,29 @@ interface LoginUser {
   user_email: string;
   user_password: string;
 }
+interface ProfileDetails {
+  profile_name: string;
+}
 
+interface UserDetails {
+  user_email: string;
+  user_password: string;
+  user_role_id: number; // Assuming role id 2 for investor
+}
+
+interface AddressDetails {
+  address_street: string;
+  address_city: string;
+  address_state: string;
+  address_country: string;
+  address_zipcode: string;
+}
+
+interface SignUpUser {
+  ProfileDetails: ProfileDetails;
+  UserDetails: UserDetails;
+  AddressDetails: AddressDetails;
+}
 const initialState = {
   user: user ? user : null,
   isError: false,
@@ -29,6 +51,22 @@ export const login = createAsyncThunk(
     } catch (error) {
       const message =
         error.response?.data?.message || error.message || error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+export const signup = createAsyncThunk(
+  "auth/signup",
+  async (user: SignUpUser, thunkAPI) => {
+    try {
+      const response = await authService.signup(user);
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.log(error);
+      const message =
+        error.response?.data?.message || error.message || error.toString();
+      console.log(message);
       return thunkAPI.rejectWithValue(message);
     }
   }
@@ -61,6 +99,22 @@ export const authSlice = createSlice({
         // console.log(action);
       })
       .addCase(login.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload as string;
+        // console.log(action);
+      })
+      .addCase(signup.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(signup.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.user = action.payload.data.data;
+        state.message = action.payload.data.message;
+        console.log(action);
+      })
+      .addCase(signup.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload as string;

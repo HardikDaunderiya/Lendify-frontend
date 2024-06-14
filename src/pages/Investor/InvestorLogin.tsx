@@ -23,13 +23,13 @@ const InvestorLogin = () => {
       });
     }
     if (isSuccess && user) {
+      navigate("/investor/feed"); // Adjust the route as necessary
       toast({
         variant: "sucessfull",
         title: "Success",
         description: message,
       });
       //Navigate to the next route over here
-      // navigate("/next-route"); // Adjust the route as necessary
     }
 
     dispatch(reset());
