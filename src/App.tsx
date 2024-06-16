@@ -7,11 +7,12 @@ import Header from "./components/Header";
 import InvestorLogin from "./pages/Investor/InvestorLogin";
 import OwnerLogin from "./pages/Owner/OwnerLogin";
 import BusinessFeed from "./pages/Investor/BusinessFeed";
-import Business from "./components/Business";
+import BusinessById from "./pages/Investor/BusinessById";
 import { Toaster } from "./components/ui/toaster";
 import { ProtectedInvestorRoutes } from "./components/ProtectedInvestorRoutes"; // Ensure the correct import path
+import Chat from "./pages/Chat";
+import Home from "./pages/Home";
 
-console.log(localStorage.getItem("user"));
 const App = () => {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
@@ -20,10 +21,12 @@ const App = () => {
       <Routes>
         <Route path="/investor/login" element={<InvestorLogin />} />
         <Route path="/investor/signup" element={<InvestorSignup />} />
+        <Route path="/home" element={<Home />} />
 
         <Route element={<ProtectedInvestorRoutes />}>
           <Route path="/investor/feed" element={<BusinessFeed />} />
-          <Route path="/investor/business/id" element={<Business />} />
+          <Route path="/investor/business/:id" element={<BusinessById />} />
+          <Route path="/investor/chat" element={<Chat />} />
         </Route>
 
         <Route path="/owner/login" element={<OwnerLogin />} />

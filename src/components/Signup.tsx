@@ -46,8 +46,8 @@ export function Signup({ onSubmit, title }) {
   });
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="border rounded-md p-4 rounded-lg shadow-md">
+    <div className="flex items-center justify-center min-h-screen ">
+      <div className="border  p-4 rounded-lg shadow-md  border-purple-900">
         <h2 className="text-2xl font-bold text-center mb-4">{title}</h2>
         <ScrollArea className="h-[500px] w-[500px] overflow-y-auto">
           <div className="p-4 space-y-4 rounded-lg border">

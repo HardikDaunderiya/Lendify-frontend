@@ -1,15 +1,33 @@
 import axios from "axios";
-
+import { getAccessToken } from "@/lib/helper";
 export const fetchBusinesses = async () => {
-  const token = localStorage.getItem("user.token");
+  console.log("in business");
+
+  // Retrieve and parse the user token from localStorage
+
   const response = await axios.get(
     "http://localhost:8000/api/v1/investor/feed",
     {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${getAccessToken()}`,
       },
     }
   );
+  console.log(response);
   return response.data;
 };
-console;
+
+export const fetchBusinessById = async (id) => {
+  const response = await axios.get(
+    `http://localhost:8000/api/v1/investor/business/${id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+    }
+  );
+  console.log(response.data);
+  return response.data;
+};
+
+export const businessService = { fetchBusinesses, fetchBusinessById };

@@ -19,4 +19,11 @@ const login = async (userData) => {
   return response;
 };
 
+const Logout = async () => {
+  const response = await axios.post(API_URL + "logout");
+  //sennd an auth token for this
+
+  return response;
+};
+
 export const authService = { login, signup };

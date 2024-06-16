@@ -1,8 +1,3 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/WWCJHMuOsTx
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -10,12 +5,24 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ModeToggle } from "./mode-toggle";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { logout, reset } from "@/store/auth/authSlice";
+// import { logout } from "@/store/slices/authSlice"; // Assuming you have a logout action in your authSlice
 
 export default function Component() {
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.auth);
+
+  const navigate = useNavigate();
+  const signout = () => {
+    dispatch(logout());
+    navigate("/home");
+  };
+
   return (
-    <header className="w-full border border-grey rounded-sm py-4 px-6 md:px-10 flex items-center justify-between">
+    <header className="w-full border border-grey rounded-sm py-4 px-6 md:px-10 flex items-center justify-between border-purple-900">
       <Link to="#" className="flex items-center gap-2">
         <MountainIcon className="h-6 w-6" />
         <span className="text-xl font-bold">Acme Inc</span>
@@ -23,61 +30,72 @@ export default function Component() {
 
       <div className="flex items-center gap-4">
         <ModeToggle />
-
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="flex items-center gap-2">
-              Sign Up <ChevronDownIcon className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56">
-            <DropdownMenuItem asChild>
-              <Link
-                to="/owner/signup"
-                className="flex items-center justify-between"
-              >
-                Owner Account
-                <ArrowRightIcon className="h-4 w-4" />
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <Link
-                to="/investor/signup"
-                className="flex items-center justify-between"
-              >
-                Investor Account
-                <ArrowRightIcon className="h-4 w-4" />
-              </Link>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="flex items-center gap-2">
-              Sign In <ChevronDownIcon className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56">
-            <DropdownMenuItem asChild>
-              <Link
-                to="/owner/login"
-                className="flex items-center justify-between"
-              >
-                Owner
-                <ArrowRightIcon className="h-4 w-4" />
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <Link
-                to="/investor/login"
-                className="flex items-center justify-between"
-              >
-                Investor
-                <ArrowRightIcon className="h-4 w-4" />
-              </Link>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        {user ? (
+          <Button
+            onClick={signout}
+            variant={"outline"}
+            className="border border-purple-700"
+          >
+            Signout
+          </Button>
+        ) : (
+          <>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="flex items-center gap-2">
+                  Sign Up <ChevronDownIcon className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56">
+                <DropdownMenuItem asChild>
+                  <Link
+                    to="/owner/signup"
+                    className="flex items-center justify-between"
+                  >
+                    Owner Account
+                    <ArrowRightIcon className="h-4 w-4" />
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    to="/investor/signup"
+                    className="flex items-center justify-between"
+                  >
+                    Investor Account
+                    <ArrowRightIcon className="h-4 w-4" />
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="flex items-center gap-2">
+                  Sign In <ChevronDownIcon className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56">
+                <DropdownMenuItem asChild>
+                  <Link
+                    to="/owner/login"
+                    className="flex items-center justify-between"
+                  >
+                    Owner
+                    <ArrowRightIcon className="h-4 w-4" />
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link
+                    to="/investor/login"
+                    className="flex items-center justify-between"
+                  >
+                    Investor
+                    <ArrowRightIcon className="h-4 w-4" />
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </>
+        )}
       </div>
     </header>
   );
