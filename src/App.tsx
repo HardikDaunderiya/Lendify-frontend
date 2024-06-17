@@ -13,18 +13,19 @@ import { ProtectedInvestorRoutes } from "./components/ProtectedInvestorRoutes"; 
 import Chat from "./pages/Chat";
 import Home from "./pages/Home";
 import Footer from "./pages/Footer";
+import InvestInRestaurant from "./pages/Investor/InvestInRestaurant";
 
 const App = () => {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Toaster />
       <Header />
-      <Home/>
-      <Footer/>
       <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route path="/investInResataurant" element={<InvestInRestaurant/>} />
         <Route path="/investor/login" element={<InvestorLogin />} />
         <Route path="/investor/signup" element={<InvestorSignup />} />
-        <Route path="/home" element={<Home />} />
+        
 
         <Route element={<ProtectedInvestorRoutes />}>
           <Route path="/investor/feed" element={<BusinessFeed />} />
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/owner/login" element={<OwnerLogin />} />
         <Route path="/owner/signup" element={<OwnerSignup />} />
       </Routes>
+      <Footer/>
     </ThemeProvider>
   );
 };
