@@ -12,15 +12,12 @@ import { Toaster } from "./components/ui/toaster";
 import { ProtectedInvestorRoutes } from "./components/ProtectedInvestorRoutes"; // Ensure the correct import path
 import Chat from "./pages/Chat";
 import Home from "./pages/Home";
-import Footer from "./pages/Footer";
 
 const App = () => {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Toaster />
       <Header />
-      <Home/>
-      <Footer/>
       <Routes>
         <Route path="/investor/login" element={<InvestorLogin />} />
         <Route path="/investor/signup" element={<InvestorSignup />} />
