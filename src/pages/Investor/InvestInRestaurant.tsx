@@ -1,14 +1,14 @@
 import { NavLink } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import Sec from "./Sec";
+import BodyIIR from "./BodyIIR";
 
 export default function Home() {
     return (
         <><div className="flex flex-col min-h-[100dvh]">
-            <section className="relative w-full h-[80vh] bg-gray-900">
+            <section className="relative w-full h-[120dvh] bg-gray-900">
                     <img
-                    src="/placeholder.svg"
+                    src="/src/assets/PIC.jpg"
                     alt="Hero Background"
                     className="absolute inset-0 w-full h-full object-cover opacity-50"
                     />
@@ -21,8 +21,8 @@ export default function Home() {
                         owners who need funding.
                     </p>
                     </div>
-                </section>
+            </section>
         </div>
-        <Sec /></>
+        <BodyIIR /></>
     )
 }
