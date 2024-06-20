@@ -1,40 +1,50 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { fetchBusinesses } from "@/store/business/businessSlice";
+import { fetchBusinesses, reset } from "@/store/business/businessSlice";
 import BusinessFilters from "../../components/Business/BusinessFilter";
 import BusinessList from "../../components/Business/BusinessList";
-import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import { useNavigate } from "react-router-dom";
+import { Business } from "@/store/business/businessTypes"; // Import the Business type
 
 export default function BusinessFeed() {
   const { toast } = useToast();
 
-  const { businesses, status, error, message } = useAppSelector(
+  const { businesses, isLoading, isError, message } = useAppSelector(
     (state) => state.business
   );
+  const { user } = useAppSelector((state) => state.auth);
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (status === "idle") {
+    if (isError) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: message,
+      });
+    }
+
+    if (!user) {
+      navigate("/investor/login");
+    } else {
       dispatch(fetchBusinesses());
     }
-    // if (status === "failed") {
-    //   toast({
-    //     variant: "destructive",
-    //     title: "Error",
-    //     description: message,
-    //   });
-    // }
-  }, [dispatch, status, toast, message]);
 
-  const [filteredBusinesses, setFilteredBusinesses] = useState(businesses);
-  const [sortBy, setSortBy] = useState("name");
+    return () => {
+      dispatch(reset());
+    };
+  }, [user, isError, message, dispatch, navigate, toast]);
+
+  const [filteredBusinesses, setFilteredBusinesses] = useState<Business[]>([]);
+  const [sortBy, setSortBy] = useState<keyof Business>("business_name");
 
   useEffect(() => {
     setFilteredBusinesses(businesses);
   }, [businesses]);
 
-  const handleFilter = (category) => {
+  const handleFilter = (category: string) => {
     if (category === "all") {
       setFilteredBusinesses(businesses);
     } else {
@@ -42,7 +52,7 @@ export default function BusinessFeed() {
     }
   };
 
-  const handleSort = (field) => {
+  const handleSort = (field: keyof Business) => {
     setSortBy(field);
     setFilteredBusinesses(
       [...filteredBusinesses].sort((a, b) => {
@@ -53,12 +63,12 @@ export default function BusinessFeed() {
     );
   };
 
-  if (status === "loading") {
+  if (isLoading) {
     return <p>Loading...</p>;
   }
 
-  if (status === "failed") {
-    return <p>Error: {error}</p>;
+  if (isError) {
+    return <p>Error: {message}</p>;
   }
 
   return (

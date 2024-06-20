@@ -1,10 +1,11 @@
 import BusinessCard from "./BusinessCard";
+import { Business } from "@/store/business/businessTypes"; // Import the Business type
 
-const BusinessList = ({ businesses }) => {
+const BusinessList = ({ businesses }: { businesses: Business[] }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      {businesses.map((business, index) => (
-        <BusinessCard key={index} business={business} />
+      {businesses.map((business) => (
+        <BusinessCard key={business.business_id} business={business} />
       ))}
     </div>
   );

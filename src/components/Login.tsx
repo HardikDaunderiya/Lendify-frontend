@@ -22,6 +22,18 @@ const loginSchema = z.object({
 });
 
 export function Login({ title, onSubmit }) {
+  // const router = useRouter();
+  // const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     router.replace("/dashboard"); // Redirect to the desired page
+  //   }
+  // }, [isAuthenticated, router]);
+
+  // if (isAuthenticated) {
+  //   return null; // Render nothing while redirecting
+  // }
+
   const form = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {

@@ -12,33 +12,50 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { useToast } from "@/components/ui/use-toast";
 import { fetchBusinessById } from "@/store/business/businessSlice";
 import { useNavigate, useParams } from "react-router-dom";
+import { BusinessDetailResponse } from "@/store/business/businessTypes"; // Import the BusinessDetailResponse type
 
 export default function BusinessById() {
   const { toast } = useToast();
-  const { business, status, error, message } = useAppSelector(
+  const { business, isLoading, isError, message } = useAppSelector(
     (state) => state.business
   );
   const { id } = useParams();
-  const { business_info, address_info } = business || {};
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (status === "idle") {
-      dispatch(fetchBusinessById(id));
-    }
-    if (status === "failed") {
+    dispatch(fetchBusinessById(id));
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    if (isError) {
       toast({
         variant: "destructive",
         title: "Error",
         description: message,
       });
     }
-  }, [dispatch, status, toast, message, id]);
+  }, [isError, message, toast]);
 
-  const navigate = useNavigate();
   const handleChat = () => {
     navigate("/investor/chat");
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="text-xl">Loading...</div>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="text-xl text-red-500">Failed to load business data</div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex items-center justify-center h-screen">
@@ -52,18 +69,18 @@ export default function BusinessById() {
           </Avatar>
           <div className="flex-1">
             <h2 className="text-xl font-semibold">
-              {business_info?.business_name || "Business Name"}
+              {business?.business_info?.business_name || "Business Name"}
             </h2>
             <p className="text-sm text-gray-500 dark:text-gray-400">
               {"-- " +
-                (business_info?.business_owner_firstname || "First") +
+                (business?.business_info?.business_owner_firstname || "First") +
                 " " +
-                (business_info?.business_owner_lastname || "Last")}
+                (business?.business_info?.business_owner_lastname || "Last")}
             </p>
           </div>
           <div className="flex items-center gap-1 text-sm font-medium">
             <StarIcon className="h-4 w-4 fill-primary" />
-            <span>{business_info?.business_ratings || "0.0"}</span>
+            <span>{business?.business_info?.business_ratings || "0.0"}</span>
           </div>
         </CardHeader>
         <CardContent className="p-6 pt-0 grid gap-4">
@@ -71,13 +88,13 @@ export default function BusinessById() {
             <div className="flex items-center gap-2">
               <PhoneIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
               <a href="#" className="text-gray-500 dark:text-gray-400">
-                {business_info?.business_contact || "N/A"}
+                {business?.business_info?.business_contact || "N/A"}
               </a>
             </div>
             <div className="flex items-center gap-2">
               <MailIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
               <a href="#" className="text-gray-500 dark:text-gray-400">
-                {business_info?.business_email || "N/A"}
+                {business?.business_info?.business_email || "N/A"}
               </a>
             </div>
           </div>
@@ -85,8 +102,8 @@ export default function BusinessById() {
             <div className="flex items-center gap-2">
               <LocateIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
               <span className="text-gray-500 dark:text-gray-400">
-                {address_info
-                  ? `${address_info.address_street} ${address_info.address_city} ${address_info.address_state} ${address_info.address_country} ${address_info.address_zipcode}`
+                {business?.address_info
+                  ? `${business.address_info.address_street} ${business.address_info.address_city} ${business.address_info.address_state} ${business.address_info.address_country} ${business.address_info.address_zipcode}`
                   : "Address not available"}
               </span>
             </div>
@@ -103,8 +120,8 @@ export default function BusinessById() {
               Investment Requirement Amount
             </div>
             <div className="font-semibold">
-              {business_info?.business_minamount
-                ? `${business_info.business_minamount}₹`
+              {business?.business_info?.business_minamount
+                ? `${business.business_info.business_minamount}₹`
                 : "N/A"}
             </div>
           </div>

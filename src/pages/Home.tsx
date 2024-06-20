@@ -165,31 +165,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-gray-100 py-12 md:py-20">
-        <div className="container mx-auto px-4 md:px-6 flex flex-col items-center text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-2">
-            Stay Updated with Our Newsletter
-          </h2>
-          <p className="text-gray-500 max-w-md mb-6">
-            Subscribe to our newsletter to receive the latest updates, offers,
-            and exclusive investment opportunities.
-          </p>
-          <form className="w-full max-w-md flex items-center">
-            <Input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 h-10 px-4 rounded-l-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-            <Button
-              type="submit"
-              className="h-10 px-6 rounded-r-md bg-blue-500 text-white font-medium hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-            >
-              Subscribe
-            </Button>
-          </form>
-        </div>
-      </section>
     </div>
   );
 }
-
