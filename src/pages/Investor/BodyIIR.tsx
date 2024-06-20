@@ -1,8 +1,15 @@
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectItem } from "@/components/ui/select";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+} from "@/components/ui/select";
 
-export default function Component() {
+export default function BodyIIR() {
   return (
-<div className="flex flex-col items-center gap-4 my-8 bg-cover bg-center">
+    <div className="flex flex-col items-center gap-4 my-8 bg-cover bg-center">
       <div className="flex justify-start items-center gap-4">
         <div className="mr-4" />
         <Select>
@@ -37,7 +44,11 @@ export default function Component() {
       <div className="grid grid-cols-3 gap-4">
         <div className="w-[396px] h-[392px] rounded-lg shadow-lg">
           <div className="w-[356px] h-[239px] bg-gray-200 rounded-t-lg mx-auto mt-4 relative">
-            <img src="src\assets\rest 1.jpg" alt="RES PIC" className="absolute inset-0 w-full h-full object-cover rounded-t-lg" />
+            <img
+              src="src\assets\rest-1.jpg"
+              alt="RES PIC"
+              className="absolute inset-0 w-full h-full object-cover rounded-t-lg"
+            />
           </div>
           <div className="mt-4 text-center">
             <h3 className="text-lg font-medium">Restaurant Name</h3>
@@ -49,7 +60,11 @@ export default function Component() {
         </div>
         <div className="w-[396px] h-[392px] rounded-lg shadow-lg">
           <div className="w-[356px] h-[239px] bg-gray-200 rounded-t-lg mx-auto mt-4 relative">
-            <img src="src\assets\res 2.jpg" alt="RES PIC" className="absolute inset-0 w-full h-full object-cover rounded-t-lg" />
+            <img
+              src="src\assets\res-2.jpg"
+              alt="RES PIC"
+              className="absolute inset-0 w-full h-full object-cover rounded-t-lg"
+            />
           </div>
           <div className="mt-4 text-center">
             <h3 className="text-lg font-medium">Restaurant Name</h3>
@@ -61,7 +76,11 @@ export default function Component() {
         </div>
         <div className="w-[396px] h-[392px] rounded-lg shadow-lg">
           <div className="w-[356px] h-[239px] bg-gray-200 rounded-t-lg mx-auto mt-4 relative">
-            <img src="src\assets\res 3.jpg" alt="RES PIC" className="absolute inset-0 w-full h-full object-cover rounded-t-lg" />
+            <img
+              src="src\assets\res-3.jpg"
+              alt="RES PIC"
+              className="absolute inset-0 w-full h-full object-cover rounded-t-lg"
+            />
           </div>
           <div className="mt-4 text-center">
             <h3 className="text-lg font-medium">Restaurant Name</h3>
@@ -75,7 +94,11 @@ export default function Component() {
       <div className="grid grid-cols-3 gap-4">
         <div className="w-[396px] h-[392px] rounded-lg shadow-lg">
           <div className="w-[356px] h-[239px] bg-gray-200 rounded-t-lg mx-auto mt-4 relative">
-            <img src="src\assets\res 4.jpg" alt="RES PIC" className="absolute inset-0 w-full h-full object-cover rounded-t-lg" />
+            <img
+              src="src\assets\res-4.jpg"
+              alt="RES PIC"
+              className="absolute inset-0 w-full h-full object-cover rounded-t-lg"
+            />
           </div>
           <div className="mt-4 text-center">
             <h3 className="text-lg font-medium">Restaurant Name</h3>
@@ -87,7 +110,11 @@ export default function Component() {
         </div>
         <div className="w-[396px] h-[392px] rounded-lg shadow-lg">
           <div className="w-[356px] h-[239px] bg-gray-200 rounded-t-lg mx-auto mt-4 relative">
-            <img src="src\assets\res 5.jpg" alt="RES PIC" className="absolute inset-0 w-full h-full object-cover rounded-t-lg" />
+            <img
+              src="src\assets\res-5.jpg"
+              alt="RES PIC"
+              className="absolute inset-0 w-full h-full object-cover rounded-t-lg"
+            />
           </div>
           <div className="mt-4 text-center">
             <h3 className="text-lg font-medium">Restaurant Name</h3>
@@ -99,7 +126,11 @@ export default function Component() {
         </div>
         <div className="w-[396px] h-[392px] rounded-lg shadow-lg">
           <div className="w-[356px] h-[239px] bg-gray-200 rounded-t-lg mx-auto mt-4 relative">
-            <img src="src\assets\res 6.jpg" alt="RES PIC" className="absolute inset-0 w-full h-full object-cover rounded-t-lg" />
+            <img
+              src="src\assets\res-6.jpg"
+              alt="RES PIC"
+              className="absolute inset-0 w-full h-full object-cover rounded-t-lg"
+            />
           </div>
           <div className="mt-4 text-center">
             <h3 className="text-lg font-medium">Restaurant Name</h3>
@@ -113,7 +144,11 @@ export default function Component() {
       <div className="grid grid-cols-3 gap-4">
         <div className="w-[396px] h-[392px] rounded-lg shadow-lg">
           <div className="w-[356px] h-[239px] bg-gray-200 rounded-t-lg mx-auto mt-4 relative">
-            <img src="src\assets\res 7.jpg" alt="RES PIC" className="absolute inset-0 w-full h-full object-cover rounded-t-lg" />
+            <img
+              src="src\assets\res-7.jpg"
+              alt="RES PIC"
+              className="absolute inset-0 w-full h-full object-cover rounded-t-lg"
+            />
           </div>
           <div className="mt-4 text-center">
             <h3 className="text-lg font-medium">Restaurant Name</h3>
@@ -125,7 +160,11 @@ export default function Component() {
         </div>
         <div className="w-[396px] h-[392px] rounded-lg shadow-lg">
           <div className="w-[356px] h-[239px] bg-gray-200 rounded-t-lg mx-auto mt-4 relative">
-            <img src="src\assets\res 8.jpg" alt="RES PIC" className="absolute inset-0 w-full h-full object-cover rounded-t-lg" />
+            <img
+              src="src\assets\res-8.jpg"
+              alt="RES PIC"
+              className="absolute inset-0 w-full h-full object-cover rounded-t-lg"
+            />
           </div>
           <div className="mt-4 text-center">
             <h3 className="text-lg font-medium">Restaurant Name</h3>
@@ -137,7 +176,11 @@ export default function Component() {
         </div>
         <div className="w-[396px] h-[392px] rounded-lg shadow-lg">
           <div className="w-[356px] h-[239px] bg-gray-200 rounded-t-lg mx-auto mt-4 relative">
-            <img src="src\assets\res 9.jpg" alt="RES PIC" className="absolute inset-0 w-full h-full object-cover rounded-t-lg" />
+            <img
+              src="src\assets\res-9.jpg"
+              alt="RES PIC"
+              className="absolute inset-0 w-full h-full object-cover rounded-t-lg"
+            />
           </div>
           <div className="mt-4 text-center">
             <h3 className="text-lg font-medium">Restaurant Name</h3>

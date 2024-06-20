@@ -23,6 +23,8 @@ const OwnerLogin = () => {
       });
     }
     if (isSuccess && user) {
+      navigate("/owner/dashboard"); // Adjust the route as necessary
+
       toast({
         variant: "sucessfull",
         title: "Success",

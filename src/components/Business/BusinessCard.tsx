@@ -10,7 +10,7 @@ const BusinessCard = ({ business }: { business: Business }) => {
     >
       <Card className="cursor-pointer hover:shadow-lg transition-shadow duration-300">
         <img
-          src="/placeholder.svg"
+          src="/src/assets/res-5.jpg"
           alt={business.business_name}
           width={600}
           height={400}

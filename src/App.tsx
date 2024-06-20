@@ -14,6 +14,7 @@ import Chat from "./pages/Chat";
 import Home from "./pages/Home";
 import Footer from "./pages/Footer";
 import InvestInRestaurant from "./pages/Investor/InvestInRestaurant";
+import { PublicRoute } from "./components/PublicRoute";
 const App = () => {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
@@ -22,18 +23,18 @@ const App = () => {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/investInResataurant" element={<InvestInRestaurant />} />
-        <Route path="/investor/login" element={<InvestorLogin />} />
-        <Route path="/investor/signup" element={<InvestorSignup />} />
-        <Route path="/home" element={<Home />} />
+        <Route element={<PublicRoute />}>
+          <Route path="/investor/login" element={<InvestorLogin />} />
+          <Route path="/investor/signup" element={<InvestorSignup />} />
+          <Route path="/owner/login" element={<OwnerLogin />} />
+          <Route path="/owner/signup" element={<OwnerSignup />} />
+        </Route>
 
         <Route element={<ProtectedInvestorRoutes />}>
           <Route path="/investor/feed" element={<BusinessFeed />} />
           <Route path="/investor/business/:id" element={<BusinessById />} />
           <Route path="/investor/chat" element={<Chat />} />
         </Route>
-
-        <Route path="/owner/login" element={<OwnerLogin />} />
-        <Route path="/owner/signup" element={<OwnerSignup />} />
       </Routes>
       <Footer />
     </ThemeProvider>
