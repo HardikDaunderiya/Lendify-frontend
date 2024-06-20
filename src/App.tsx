@@ -14,12 +14,18 @@ import Chat from "./pages/Chat";
 import Home from "./pages/Home";
 import Footer from "./pages/Footer";
 import InvestInRestaurant from "./pages/Investor/InvestInRestaurant";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 50198de0b61667783cdb4826aff51df2c044de7f
 const App = () => {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Toaster />
       <Header />
       <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route path="/investInResataurant" element={<InvestInRestaurant/>} />
         <Route path="/investor/login" element={<InvestorLogin />} />
         <Route path="/investor/signup" element={<InvestorSignup />} />
         <Route path="/home" element={<Home />} />
@@ -33,6 +39,7 @@ const App = () => {
         <Route path="/owner/login" element={<OwnerLogin />} />
         <Route path="/owner/signup" element={<OwnerSignup />} />
       </Routes>
+<Footer/>
     </ThemeProvider>
   );
 };

@@ -17,7 +17,7 @@ export default function Home() {
           className="absolute inset-0 w-full h-full object-cover opacity-50"
         />
         <div className="relative z-10 container mx-auto px-4 md:px-6 flex flex-col items-center justify-center h-full space-y-6 text-center text-white">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight ">
             Connect Investors and Business Owners
           </h1>
           <p className="text-lg md:text-xl max-w-3xl">
@@ -43,7 +43,7 @@ export default function Home() {
       <section className="py-12 md:py-20">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col items-center mb-8 md:mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-2">
+            <h2 className="text-3xl md:text-4xl font-bold mb-2  text-custom-purple">
               Featured Investment Opportunities
             </h2>
             <p className="text-gray-500 max-w-md">
