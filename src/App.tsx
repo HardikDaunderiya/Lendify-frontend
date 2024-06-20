@@ -12,7 +12,8 @@ import { Toaster } from "./components/ui/toaster";
 import { ProtectedInvestorRoutes } from "./components/ProtectedInvestorRoutes"; // Ensure the correct import path
 import Chat from "./pages/Chat";
 import Home from "./pages/Home";
-
+import Footer from "./pages/Footer";
+import InvestInRestaurant from "./pages/Investor/InvestInRestaurant";
 const App = () => {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
