@@ -45,7 +45,7 @@ export default function BodyIIR() {
         <div className="w-[396px] h-[392px] rounded-lg shadow-lg">
           <div className="w-[356px] h-[239px] bg-gray-200 rounded-t-lg mx-auto mt-4 relative">
             <img
-              src="src\assets\rest-1.jpg"
+              src="src\assets\res-1.jpg"
               alt="RES PIC"
               className="absolute inset-0 w-full h-full object-cover rounded-t-lg"
             />
