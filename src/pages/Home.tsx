@@ -54,7 +54,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <img
-                src="/placeholder.svg"
+                src="src\assets\res-1.jpg"
                 alt="Investment 1"
                 className="w-full h-48 object-cover"
               />
@@ -66,7 +66,7 @@ export default function Home() {
             </div>
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <img
-                src="/placeholder.svg"
+                src="src\assets\res-2.jpg"
                 alt="Investment 2"
                 className="w-full h-48 object-cover"
               />
@@ -78,7 +78,7 @@ export default function Home() {
             </div>
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <img
-                src="/placeholder.svg"
+                src="src\assets\res-3.jpg"
                 alt="Investment 3"
                 className="w-full h-48 object-cover"
               />
@@ -90,7 +90,7 @@ export default function Home() {
             </div>
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <img
-                src="/placeholder.svg"
+                src="src\assets\res-4.jpg"
                 alt="Investment 4"
                 className="w-full h-48 object-cover"
               />
@@ -106,7 +106,7 @@ export default function Home() {
       <section className="py-12 md:py-20">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col items-center mb-8 md:mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-2">
+            <h2 className="text-3xl md:text-4xl font-bold mb-2 text-custom-purple">
               Featured Business Opportunities
             </h2>
             <p className="text-gray-500 max-w-md">
@@ -116,7 +116,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <img
-                src="/placeholder.svg"
+                src="src\assets\res-5.jpg"
                 alt="Business 1"
                 className="w-full h-48 object-cover"
               />
@@ -128,7 +128,7 @@ export default function Home() {
             </div>
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <img
-                src="/placeholder.svg"
+                src="src\assets\res-6.jpg"
                 alt="Business 2"
                 className="w-full h-48 object-cover"
               />
@@ -140,7 +140,7 @@ export default function Home() {
             </div>
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <img
-                src="/placeholder.svg"
+                src="src\assets\res-7.jpg"
                 alt="Business 3"
                 className="w-full h-48 object-cover"
               />
@@ -152,7 +152,7 @@ export default function Home() {
             </div>
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <img
-                src="/placeholder.svg"
+                src="src\assets\res-8.jpg"
                 alt="Business 4"
                 className="w-full h-48 object-cover"
               />
