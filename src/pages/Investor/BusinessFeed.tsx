@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { fetchBusinesses, reset } from "@/store/business/businessSlice";
+import {
+  fetchBusinesses,
+  reset,
+} from "@/store/investor-business/investorBusinessSlice";
 import BusinessFilters from "../../components/Business/BusinessFilter";
 import BusinessList from "../../components/Business/BusinessList";
 import { useToast } from "@/components/ui/use-toast";
 import { useNavigate } from "react-router-dom";
-import { Business } from "@/store/business/businessTypes"; // Import the Business type
+import { Business } from "@/store/investor-business/investorBusinessTypes"; // Import the Business type
 
 export default function BusinessFeed() {
   const { toast } = useToast();
@@ -48,7 +51,9 @@ export default function BusinessFeed() {
     if (category === "all") {
       setFilteredBusinesses(businesses);
     } else {
-      setFilteredBusinesses(businesses.filter((b) => b.category === category));
+      setFilteredBusinesses(
+        businesses.filter((b) => b.business_name === category)
+      );
     }
   };
 

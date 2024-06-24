@@ -9,7 +9,7 @@ export const PublicRoute = () => {
     if (user.Role === 2) {
       return <Navigate to="/investor/feed" />;
     } else if (user.Role === 1) {
-      return <Navigate to="/owner/dashboard" />; // Replace with the appropriate owner page
+      return <Navigate to="/owner/mybusiness" />; // Replace with the appropriate owner page
     }
   }
 

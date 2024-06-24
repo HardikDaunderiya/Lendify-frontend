@@ -1,7 +1,7 @@
 import { useAppSelector } from "@/store/hooks";
 import { Outlet, Navigate } from "react-router-dom";
 
-export const ProtectedInvestorRoutes = () => {
+export const ProtectedOwnerRoutes = () => {
   const { user } = useAppSelector((state) => state.auth);
 
   //   const navigate = useNavigate();

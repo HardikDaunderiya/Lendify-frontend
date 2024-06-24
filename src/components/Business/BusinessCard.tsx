@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { Business } from "@/store/business/businessTypes"; // Import the Business type
+import { Business } from "@/store/investor-business/investorBusinessTypes"; // Import the Business type
 
 const BusinessCard = ({ business }: { business: Business }) => {
   return (

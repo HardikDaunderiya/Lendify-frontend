@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { businessService } from "./businessService";
+import { businessService } from "./ownerBusinessService";
 import {
   Business,
   BusinessFeedResponse,
   BusinessDetailResponse,
   BusinessState,
-} from "./businessTypes"; // Import the types
+} from "./../../lib/types/BusinessTypes"; // Import the types
 
 export const fetchBusinesses = createAsyncThunk<
   BusinessFeedResponse,
