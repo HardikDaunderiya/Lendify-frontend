@@ -1,5 +1,5 @@
 import BusinessCard from "./BusinessCard";
-import { Business } from "@/store/business/businessTypes"; // Import the Business type
+import { Business } from "@/store/investor-business/investorBusinessTypes"; // Import the Business type
 
 const BusinessList = ({ businesses }: { businesses: Business[] }) => {
   return (

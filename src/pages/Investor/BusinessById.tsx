@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { useToast } from "@/components/ui/use-toast";
-import { fetchBusinessById } from "@/store/business/businessSlice";
+import { fetchBusinessById } from "@/store/investor-business/investorBusinessSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   Carousel,

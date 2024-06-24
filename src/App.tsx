@@ -15,6 +15,9 @@ import Home from "./pages/Home";
 import Footer from "./pages/Footer";
 import InvestInRestaurant from "./pages/Investor/InvestInRestaurant";
 import { PublicRoute } from "./components/PublicRoute";
+import { ProtectedOwnerRoutes } from "./components/ProtectedOwnerRoute";
+import OwnerBusinessFeed from "./pages/Owner/OwnerBusinessFeed";
+import CreateBusiness from "./pages/Owner/CreateBusiness";
 const App = () => {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
@@ -34,6 +37,12 @@ const App = () => {
           <Route path="/investor/feed" element={<BusinessFeed />} />
           <Route path="/investor/business/:id" element={<BusinessById />} />
           <Route path="/investor/chat" element={<Chat />} />
+        </Route>
+
+        <Route element={<ProtectedOwnerRoutes />}>
+          <Route path="/owner/mybusiness" element={<OwnerBusinessFeed />} />
+          <Route path="/owner/createbusiness" element={<CreateBusiness />} />
+          {/* <Route path="/owner/business/:id" element={<OwnerBusinessFeed />} /> */}
         </Route>
       </Routes>
       <Footer />

@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./auth/authSlice";
-import businessReducer from "./business/businessSlice";
+import businessReducer from "./investor-business/investorBusinessSlice";
 // Customize middleware to disable serializable check
 
 const store = configureStore({
