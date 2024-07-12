@@ -8,13 +8,13 @@ import BusinessFilters from "../../components/Business/BusinessFilter";
 import BusinessList from "../../components/Business/BusinessList";
 import { useToast } from "@/components/ui/use-toast";
 import { useNavigate } from "react-router-dom";
-import { Business } from "@/store/investor-business/investorBusinessTypes"; // Import the Business type
+import { Business } from "@/lib/types/BusinessTypes"; // Import the Business type
 
 export default function BusinessFeed() {
   const { toast } = useToast();
 
   const { businesses, isLoading, isError, message } = useAppSelector(
-    (state) => state.business
+    (state) => state.investorBusiness
   );
   const { user } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -91,7 +91,7 @@ export default function BusinessFeed() {
             businesses={businesses}
           />
         </div>
-        <BusinessList businesses={filteredBusinesses} />
+        <BusinessList businesses={filteredBusinesses} type={"investor"} />
       </div>
     </section>
   );

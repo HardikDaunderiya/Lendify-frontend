@@ -1,11 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { Business } from "@/store/investor-business/investorBusinessTypes"; // Import the Business type
+// import Business from "@/store/investor-business/investorBusinessSlice"; // Import the Business type
 
-const BusinessCard = ({ business }: { business: Business }) => {
+const BusinessCard = ({ business, type }) => {
   return (
     <Link
-      to={`/investor/business/${business.business_id}`}
+      to={`/${type}/business/${business.business_id}`}
       className="no-underline"
     >
       <Card className="cursor-pointer hover:shadow-lg transition-shadow duration-300">

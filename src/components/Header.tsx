@@ -25,7 +25,7 @@ export default function Component() {
     <header className="w-full border border-grey rounded-sm py-4 px-6 md:px-10 flex items-center justify-between border-purple-900">
       <Link to="#" className="flex items-center gap-2">
         <MountainIcon className="h-6 w-6" />
-        <span className="text-xl font-bold">Acme Inc</span>
+        <span className="text-xl font-bold">Lendmefy</span>
       </Link>
 
       <div className="flex items-center gap-4">

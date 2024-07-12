@@ -32,7 +32,7 @@ const BusinessFilters = ({
       <div className="flex items-center space-x-4">
         <Button
           variant={
-            filteredBusinesses.length === businesses.length
+            filteredBusinesses?.length === businesses?.length
               ? "default"
               : "outline"
           }
@@ -42,7 +42,7 @@ const BusinessFilters = ({
         </Button>
         <Button
           variant={
-            filteredBusinesses.some((b) => b.category === "Manufacturing")
+            filteredBusinesses?.some((b) => b.category === "Manufacturing")
               ? "default"
               : "outline"
           }
@@ -52,7 +52,7 @@ const BusinessFilters = ({
         </Button>
         <Button
           variant={
-            filteredBusinesses.some((b) => b.category === "Retail")
+            filteredBusinesses?.some((b) => b.category === "Retail")
               ? "default"
               : "outline"
           }
@@ -62,7 +62,7 @@ const BusinessFilters = ({
         </Button>
         <Button
           variant={
-            filteredBusinesses.some((b) => b.category === "Technology")
+            filteredBusinesses?.some((b) => b.category === "Technology")
               ? "default"
               : "outline"
           }
@@ -72,7 +72,7 @@ const BusinessFilters = ({
         </Button>
         <Button
           variant={
-            filteredBusinesses.some((b) => b.category === "Food & Beverage")
+            filteredBusinesses?.some((b) => b.category === "Food & Beverage")
               ? "default"
               : "outline"
           }
@@ -82,7 +82,7 @@ const BusinessFilters = ({
         </Button>
         <Button
           variant={
-            filteredBusinesses.some((b) => b.category === "Home & Garden")
+            filteredBusinesses?.some((b) => b.category === "Home & Garden")
               ? "default"
               : "outline"
           }

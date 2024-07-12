@@ -23,7 +23,7 @@ function OwnerSignup() {
     if (isSuccess) {
       navigate("/owner/login"); // Adjust the route as necessary
       toast({
-        variant: "sucessfull",
+        variant: "successfully",
         title: "Success",
         description: message,
       });
@@ -41,7 +41,7 @@ function OwnerSignup() {
       UserDetails: {
         user_email: data.user_email,
         user_password: data.user_password,
-        user_role_id: 2, // Assuming role id 2 for investor
+        user_role_id: 1, // Assuming role id 2 for investor
       },
       AddressDetails: {
         address_street: data.address_street,

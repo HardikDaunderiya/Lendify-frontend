@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import InvestorSignup from "./pages/Investor/InvestorSignup";
@@ -18,12 +18,15 @@ import { PublicRoute } from "./components/PublicRoute";
 import { ProtectedOwnerRoutes } from "./components/ProtectedOwnerRoute";
 import OwnerBusinessFeed from "./pages/Owner/OwnerBusinessFeed";
 import CreateBusiness from "./pages/Owner/CreateBusiness";
+import OwnerBusinessById from "./pages/Owner/OwnerBusinessByid";
 const App = () => {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Toaster />
       <Header />
       <Routes>
+        <Route path="/" element={<Navigate to="/home" />} />
+
         <Route path="/home" element={<Home />} />
         <Route path="/investInResataurant" element={<InvestInRestaurant />} />
         <Route element={<PublicRoute />}>
@@ -42,7 +45,7 @@ const App = () => {
         <Route element={<ProtectedOwnerRoutes />}>
           <Route path="/owner/mybusiness" element={<OwnerBusinessFeed />} />
           <Route path="/owner/createbusiness" element={<CreateBusiness />} />
-          {/* <Route path="/owner/business/:id" element={<OwnerBusinessFeed />} /> */}
+          <Route path="/owner/business/:id" element={<OwnerBusinessById />} />
         </Route>
       </Routes>
       <Footer />

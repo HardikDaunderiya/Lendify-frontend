@@ -1,14 +1,8 @@
-//apis
-//fetch Business byowner
-//fetch Busineess by ID
-//Create Business
 import axios from "axios";
 import { getAccessToken } from "@/lib/helper";
+
 export const fetchBusinesses = async () => {
   console.log("in business");
-
-  // Retrieve and parse the user token from localStorage
-
   const response = await axios.get(
     "http://localhost:8000/api/v1/business/owner",
     {
@@ -17,15 +11,10 @@ export const fetchBusinesses = async () => {
       },
     }
   );
-  // console.log(response);
   return response.data;
 };
 
-// export const createBusiness = async()=>{
-
-// };
-
-export const fetchBusinessById = async (id) => {
+export const fetchBusinessById = async (id: string) => {
   const response = await axios.get(
     `http://localhost:8000/api/v1/business/${id}`,
     {
@@ -34,8 +23,25 @@ export const fetchBusinessById = async (id) => {
       },
     }
   );
-  console.log(response.data);
   return response.data;
 };
 
-export const businessService = { fetchBusinesses, fetchBusinessById };
+export const createBusiness = async (businessDetails: any) => {
+  const response = await axios.post(
+    `http://localhost:8000/api/v1/business/createBusiness`,
+    businessDetails,
+    {
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+    }
+  );
+  console.log(response.data); // Add this log to check the response structure
+  return response.data; // Ensure this matches the expected structure
+};
+
+export const businessService = {
+  fetchBusinesses,
+  fetchBusinessById,
+  createBusiness,
+};

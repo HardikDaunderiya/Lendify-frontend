@@ -22,6 +22,22 @@ export const fetchBusinesses = createAsyncThunk<
   }
 });
 
+export const createBusiness = createAsyncThunk(
+  "business/createBusiness",
+  async (businessDetails, thunkAPI) => {
+    try {
+      const response = await businessService.createBusiness(businessDetails);
+      console.log(response); // Add this log to check the payload being returned
+      return response; // Return the correct structure directly from response.data
+    } catch (error: any) {
+      const message =
+        error.response?.data?.message || error.message || error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const fetchBusinessById = createAsyncThunk<
   BusinessDetailResponse,
   string,
@@ -45,11 +61,19 @@ const initialState: BusinessState = {
   message: "",
 };
 
-const businessSlice = createSlice({
+const ownerBusinessSlice = createSlice({
   name: "business",
   initialState,
   reducers: {
-    reset: (state) => initialState,
+    reset: (state) => {
+      console.log("i am in reset");
+      state.businesses = [];
+      state.business = null;
+      state.isLoading = false;
+      state.isSuccess = false;
+      state.isError = false;
+      state.message = "";
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -90,9 +114,25 @@ const businessSlice = createSlice({
           state.isError = true;
           state.message = action.payload;
         }
-      );
+      )
+      .addCase(createBusiness.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createBusiness.fulfilled, (state, action) => {
+        console.log("i am here");
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = action.payload.message;
+        console.log("Fulfilled action payload:", action.payload); // Add this log to check the action payload
+      })
+      .addCase(createBusiness.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload as string;
+        console.log("Rejected action payload:", action.payload);
+      });
   },
 });
 
-export const { reset } = businessSlice.actions;
-export default businessSlice.reducer;
+export const { reset } = ownerBusinessSlice.actions;
+export default ownerBusinessSlice.reducer;

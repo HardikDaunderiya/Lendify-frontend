@@ -25,7 +25,7 @@ const InvestorLogin = () => {
     if (isSuccess && user) {
       navigate("/investor/feed"); // Adjust the route as necessary
       toast({
-        variant: "sucessfull",
+        variant: "successfully",
         title: "Success",
         description: message,
       });

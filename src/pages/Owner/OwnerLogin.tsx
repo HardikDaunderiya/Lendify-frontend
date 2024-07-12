@@ -26,7 +26,7 @@ const OwnerLogin = () => {
       navigate("/owner/mybusiness"); // Adjust the route as necessary
 
       toast({
-        variant: "sucessfull",
+        variant: "successfully",
         title: "Success",
         description: message,
       });

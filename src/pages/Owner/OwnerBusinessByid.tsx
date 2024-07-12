@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { useToast } from "@/components/ui/use-toast";
-import { fetchBusinessById } from "@/store/investor-business/investorBusinessSlice";
+import { fetchBusinessById } from "@/store/owner-business/ownerBusinessSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   Carousel,
@@ -30,10 +30,10 @@ import {
   StarIcon,
 } from "@/lib/icons";
 
-export default function BusinessById() {
+export default function OwnerBusinessById() {
   const { toast } = useToast();
   const { business, isLoading, isError, message } = useAppSelector(
-    (state) => state.investorBusiness
+    (state) => state.ownerBusiness
   );
   const { id } = useParams();
   const dispatch = useAppDispatch();

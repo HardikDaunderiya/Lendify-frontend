@@ -12,10 +12,11 @@ export default function Home() {
     <div className="flex flex-col min-h-[100dvh]">
       <section className="relative w-full h-[80vh] bg-gray-900">
         <img
-          src="/placeholder.svg"
+          src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
           alt="Hero Background"
           className="absolute inset-0 w-full h-full object-cover opacity-50"
         />
+
         <div className="relative z-10 container mx-auto px-4 md:px-6 flex flex-col items-center justify-center h-full space-y-6 text-center text-white">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight ">
             Connect Investors and Business Owners
