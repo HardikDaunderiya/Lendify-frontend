@@ -14,6 +14,7 @@ export const fetchBusinesses = createAsyncThunk<
 >("business/fetchBusinesses", async (_, thunkAPI) => {
   try {
     const response = await businessService.fetchBusinesses();
+
     return response.data;
   } catch (error: any) {
     const message =

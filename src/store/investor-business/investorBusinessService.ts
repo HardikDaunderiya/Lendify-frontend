@@ -13,7 +13,7 @@ export const fetchBusinesses = async () => {
       },
     }
   );
-  // console.log(response);
+  console.log(response);
   return response.data;
 };
 

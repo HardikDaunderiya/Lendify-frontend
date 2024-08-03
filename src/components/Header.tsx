@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ModeToggle } from "./mode-toggle";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { logout, reset } from "@/store/auth/authSlice";
+import { clearAccessToken } from "@/lib/helper";
 // import { logout } from "@/store/slices/authSlice"; // Assuming you have a logout action in your authSlice
 
 export default function Component() {
@@ -18,6 +19,11 @@ export default function Component() {
   const navigate = useNavigate();
   const signout = () => {
     dispatch(logout());
+    clearAccessToken();
+    //Remove acess token
+    //Remove User Info
+    localStorage.removeItem("userInfo");
+
     navigate("/home");
   };
 
@@ -31,13 +37,33 @@ export default function Component() {
       <div className="flex items-center gap-4">
         <ModeToggle />
         {user ? (
-          <Button
-            onClick={signout}
-            variant={"outline"}
-            className="border border-purple-700"
-          >
-            Signout
-          </Button>
+          <div className="flex items-center gap-4">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" className="flex items-center gap-2">
+                  Settings <ChevronDownIcon className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56">
+                <DropdownMenuItem asChild>
+                  <Link
+                    to="/profile"
+                    className="flex items-center justify-between"
+                  >
+                    Profile
+                    <ArrowRightIcon className="h-4 w-4" />
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <Button
+              onClick={signout}
+              variant={"outline"}
+              className="border border-purple-700"
+            >
+              Signout
+            </Button>
+          </div>
         ) : (
           <>
             <DropdownMenu>

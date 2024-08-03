@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -21,8 +22,10 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   createBusiness,
   reset,
-} from "@/store/owner-business/ownerBusinessSlice"; // Ensure the correct path
-import { LoadingSpinner } from "@/components/ui/LoadingSpinnet";
+} from "@/store/owner-business/ownerBusinessSlice";
+import axios from "axios";
+
+import { Combobox } from "@/components/Combobox";
 
 const validationSchema = z.object({
   business_owner_firstname: z.string().min(1, "First name is required"),
@@ -30,21 +33,29 @@ const validationSchema = z.object({
   business_email: z.string().email("Invalid email address"),
   business_contact: z.string().min(10, "Phone number is required"),
   business_name: z.string().min(1, "Business name is required"),
-  business_ratings: z.coerce
+  business_domain_code: z.string({
+    required_error: "Please select a Business Domain.",
+  }),
+  business_state_code: z.string({
+    required_error: "Please select a State.",
+  }),
+  business_ratings: z
     .number()
-    .positive("Business rating must be positive"),
-  business_minamount: z.coerce
+    .min(0, "Rating must be at least 0")
+    .max(5, "Rating must be at most 5"),
+  business_investment_amount: z.coerce
     .number()
     .positive("Business minimum amount must be positive"),
   address_street: z.string().min(1, "Street address is required"),
   address_city: z.string().min(1, "City is required"),
-  address_state: z.string().min(1, "State is required"),
   address_country: z.string().min(1, "Country is required"),
   address_zipcode: z.string().min(1, "Zipcode is required"),
 });
 
 export default function CreateBusiness() {
   const [currentStep, setCurrentStep] = useState(1);
+  const [states, setStates] = useState([]);
+  const [domains, setDomains] = useState([]);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -60,17 +71,50 @@ export default function CreateBusiness() {
       business_email: "",
       business_contact: "",
       business_name: "",
+      business_domain_code: "",
+      business_state_code: "",
       business_ratings: 0,
-      business_minamount: 0,
+      business_investment_amount: 0,
       address_street: "",
       address_city: "",
-      address_state: "",
       address_country: "",
       address_zipcode: "",
     },
   });
 
-  console.log(isSuccess);
+  useEffect(() => {
+    const fetchStates = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8000/api/v1/quick_codes/states"
+        );
+        const { data } = response;
+        if (data.status === "success") {
+          setStates(data.data);
+        }
+      } catch (error) {
+        console.error("Error fetching states:", error);
+      }
+    };
+
+    const fetchDomains = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8000/api/v1/quick_codes/domains"
+        );
+        const { data } = response;
+        if (data.status === "success") {
+          setDomains(data.data);
+        }
+      } catch (error) {
+        console.error("Error fetching domains:", error);
+      }
+    };
+
+    fetchStates();
+    fetchDomains();
+  }, []);
+
   useEffect(() => {
     if (isError) {
       toast({
@@ -95,20 +139,26 @@ export default function CreateBusiness() {
   }, [isError, isSuccess, message, navigate, toast, dispatch]);
 
   const onSubmit = (data) => {
+    const selectedState = states.find(
+      (state) => state.code === data.business_state_code
+    );
+
     const businessData = {
       BusinessDetails: {
         business_owner_firstname: data.business_owner_firstname,
         business_owner_lastname: data.business_owner_lastname,
         business_email: data.business_email,
         business_contact: data.business_contact,
+        business_state_code: data.business_state_code,
+        business_domain_code: data.business_domain_code,
         business_name: data.business_name,
         business_ratings: data.business_ratings,
-        business_minamount: data.business_minamount,
+        business_investment_amount: data.business_investment_amount,
       },
       AddressDetails: {
         address_street: data.address_street,
         address_city: data.address_city,
-        address_state: data.address_state,
+        address_state: selectedState ? selectedState.name : "",
         address_country: data.address_country,
         address_zipcode: data.address_zipcode,
       },
@@ -124,12 +174,8 @@ export default function CreateBusiness() {
     setCurrentStep(currentStep - 1);
   };
 
-  const handleNumberChange = (event, field) => {
-    form.setValue(field, Number(event.target.value));
-  };
-
   if (isLoading) {
-    return <LoadingSpinner />;
+    return <div>Loading Spinner ...</div>;
   }
 
   return (
@@ -248,6 +294,24 @@ export default function CreateBusiness() {
                               type="number"
                               placeholder="Business Ratings"
                               {...field}
+                              onChange={(e) => {
+                                const value = e.target.value;
+                                if (
+                                  value === "" ||
+                                  (Number(value) >= 0 && Number(value) <= 5)
+                                ) {
+                                  field.onChange(value);
+                                }
+                              }}
+                              onBlur={(e) => {
+                                let value = Number(e.target.value);
+                                if (value < 0) value = 0;
+                                if (value > 5) value = 5;
+                                field.onChange(value);
+                              }}
+                              min={0}
+                              max={5}
+                              step={0.1}
                             />
                           </FormControl>
                           <FormMessage />
@@ -256,15 +320,36 @@ export default function CreateBusiness() {
                     />
                     <FormField
                       control={form.control}
-                      name="business_minamount"
+                      name="business_domain_code"
+                      render={({ field }) => (
+                        <FormItem className="flex flex-col">
+                          <FormLabel>Domains</FormLabel>
+                          <Combobox
+                            form={form}
+                            field={field}
+                            domains={domains}
+                            Info="Domain"
+                            formValue="business_domain_code"
+                          />
+                          <FormDescription>Select the Domains</FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="business_investment_amount"
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>Business Minimum Amount</FormLabel>
                           <FormControl>
                             <Input
                               type="number"
-                              placeholder="Business Minimum Amount"
+                              placeholder="Business Investment Amount"
                               {...field}
+                              onChange={(e) =>
+                                field.onChange(Number(e.target.value))
+                              }
                             />
                           </FormControl>
                           <FormMessage />
@@ -307,13 +392,18 @@ export default function CreateBusiness() {
                     />
                     <FormField
                       control={form.control}
-                      name="address_state"
+                      name="business_state_code"
                       render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>State</FormLabel>
-                          <FormControl>
-                            <Input type="text" placeholder="State" {...field} />
-                          </FormControl>
+                        <FormItem className="flex flex-col">
+                          <FormLabel>States</FormLabel>
+                          <Combobox
+                            form={form}
+                            field={field}
+                            domains={states}
+                            Info="State"
+                            formValue="business_state_code"
+                          />
+                          <FormDescription>Select the State</FormDescription>
                           <FormMessage />
                         </FormItem>
                       )}

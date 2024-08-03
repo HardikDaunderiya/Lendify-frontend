@@ -6,9 +6,9 @@ export const PublicRoute = () => {
 
   if (user) {
     // If user is logged in, redirect to the appropriate page
-    if (user.Role === 2) {
+    if (user.user_role_id === 2) {
       return <Navigate to="/investor/feed" />;
-    } else if (user.Role === 1) {
+    } else if (user.user_role_id === 1) {
       return <Navigate to="/owner/mybusiness" />; // Replace with the appropriate owner page
     }
   }

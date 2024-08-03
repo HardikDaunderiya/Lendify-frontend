@@ -11,13 +11,15 @@ export interface Business {
   business_id: number;
   business_owner_id: number;
   business_owner_firstname: string;
+  business_domain_code: string;
+  business_state_code: string;
   business_owner_lastname: string;
   business_email: string;
   business_contact: string;
   business_name: string;
   business_address_id: number;
   business_ratings: number;
-  business_minamount: number;
+  business_investment_amount: number;
   created_at: string;
   updated_at: string;
   deleted_at: string | null;

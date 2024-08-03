@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import Dropdown from "./Dropdown";
 
 const signupSchema = z.object({
   profile_name: z.string().min(1, "Profile name is required"),
@@ -137,19 +138,24 @@ export function Signup({ onSubmit, title }) {
                     </FormItem>
                   )}
                 />
-                <FormField
+                {/* <FormField
                   control={form.control}
                   name="address_state"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>State</FormLabel>
                       <FormControl>
-                        <Input type="text" placeholder="Anystate" {...field} />
+                        <Dropdown
+                          type="state"
+                          name="address_state"
+                          register={form.register}
+                          placeholder="Select State"
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
-                />
+                /> */}
                 <FormField
                   control={form.control}
                   name="address_country"

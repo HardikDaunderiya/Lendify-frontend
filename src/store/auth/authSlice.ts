@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { authService } from "./authService";
+import { userInfoFromStorage } from "@/lib/helper";
 //implement types here afterwards
 //afterwards add the refresh token here
 
 //role--1-->owner
 //role--2-->investor
-const user = JSON.parse(localStorage.getItem("user"));
 
 interface LoginUser {
   user_email: string;
@@ -36,7 +36,7 @@ interface SignUpUser {
   AddressDetails: AddressDetails;
 }
 const initialState = {
-  user: user ? user : null,
+  user: userInfoFromStorage,
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -47,6 +47,7 @@ export const login = createAsyncThunk(
   async (user: LoginUser, thunkAPI) => {
     try {
       const response = await authService.login(user);
+      console.log(response);
       return response;
     } catch (error) {
       const message =
@@ -60,7 +61,6 @@ export const signup = createAsyncThunk(
   async (user: SignUpUser, thunkAPI) => {
     try {
       const response = await authService.signup(user);
-      console.log(response);
       return response;
     } catch (error) {
       console.log(error);
@@ -77,7 +77,6 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     logout: (state) => {
-      localStorage.removeItem("user");
       state.user = null;
       state.isLoading = false;
       state.isSuccess = false;
