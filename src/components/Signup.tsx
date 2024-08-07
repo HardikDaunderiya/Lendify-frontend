@@ -45,6 +45,7 @@ export function Signup({ onSubmit, title }) {
       address_zipcode: "",
     },
   });
+  console.log("i am here in form", title);
 
   return (
     <div className="flex items-center justify-center min-h-screen ">
@@ -138,24 +139,19 @@ export function Signup({ onSubmit, title }) {
                     </FormItem>
                   )}
                 />
-                {/* <FormField
+                <FormField
                   control={form.control}
                   name="address_state"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>State</FormLabel>
+                      <FormLabel>City</FormLabel>
                       <FormControl>
-                        <Dropdown
-                          type="state"
-                          name="address_state"
-                          register={form.register}
-                          placeholder="Select State"
-                        />
+                        <Input type="text" placeholder="Anytown" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
-                /> */}
+                />
                 <FormField
                   control={form.control}
                   name="address_country"

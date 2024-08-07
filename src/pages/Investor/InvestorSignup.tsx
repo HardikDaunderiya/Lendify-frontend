@@ -51,7 +51,7 @@ function InvestorSignup() {
         address_zipcode: data.address_zipcode,
       },
     };
-
+    console.log(payload);
     dispatch(signup(payload));
   };
 

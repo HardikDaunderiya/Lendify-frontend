@@ -19,6 +19,7 @@ import CreateBusiness from "./pages/Owner/CreateBusiness";
 import OwnerBusinessById from "./pages/Owner/OwnerBusinessByid";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import Profile from "./pages/common/Profile";
+import BusinessImageUpload from "./pages/Owner/BusinessImageUpload";
 const App = () => {
   return (
     <div>
@@ -47,6 +48,10 @@ const App = () => {
             <Route path="/owner/mybusiness" element={<OwnerBusinessFeed />} />
             <Route path="/owner/createbusiness" element={<CreateBusiness />} />
             <Route path="/owner/business/:id" element={<OwnerBusinessById />} />
+            <Route
+              path="/owner/businessImageUpload"
+              element={<BusinessImageUpload />}
+            />
             <Route path="/profile" element={<Profile />} />
           </Route>
         </Routes>
