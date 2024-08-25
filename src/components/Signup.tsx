@@ -21,9 +21,7 @@ import Dropdown from "./Dropdown";
 const signupSchema = z.object({
   profile_name: z.string().min(1, "Profile name is required"),
   user_email: z.string().email("Invalid email address"),
-  user_password: z
-    .string()
-    .min(6, "Password must be at least 6 characters long"),
+  user_password: z.string().min(6, "Password must be at least 6 characters long"),
   address_street: z.string().min(1, "Street address is required"),
   address_city: z.string().min(1, "City is required"),
   address_state: z.string().min(1, "State is required"),
@@ -45,14 +43,13 @@ export function Signup({ onSubmit, title }) {
       address_zipcode: "",
     },
   });
-  console.log("i am here in form", title);
 
   return (
-    <div className="flex items-center justify-center min-h-screen ">
-      <div className="border  p-4 rounded-lg shadow-md  border-purple-900">
+    <div className="flex items-center justify-center min-h-screen p-4 bg-gray-100">
+      <div className="w-full max-w-lg p-4 rounded-lg shadow-md border border-purple-900 bg-white">
         <h2 className="text-2xl font-bold text-center mb-4">{title}</h2>
-        <ScrollArea className="h-[500px] w-[500px] overflow-y-auto">
-          <div className="p-4 space-y-4 rounded-lg border">
+        <ScrollArea className="h-auto max-h-[500px] w-full overflow-y-auto">
+          <div className="p-4 space-y-4 rounded-lg border border-gray-200">
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
@@ -65,7 +62,12 @@ export function Signup({ onSubmit, title }) {
                     <FormItem>
                       <FormLabel>Profile Name</FormLabel>
                       <FormControl>
-                        <Input type="text" placeholder="Owner" {...field} />
+                        <Input
+                          type="text"
+                          placeholder="Owner"
+                          className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -81,6 +83,7 @@ export function Signup({ onSubmit, title }) {
                         <Input
                           type="email"
                           placeholder="you@example.com"
+                          className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
                           {...field}
                         />
                       </FormControl>
@@ -101,6 +104,7 @@ export function Signup({ onSubmit, title }) {
                         <Input
                           type="password"
                           placeholder="Your password"
+                          className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
                           {...field}
                         />
                       </FormControl>
@@ -119,6 +123,7 @@ export function Signup({ onSubmit, title }) {
                         <Input
                           type="text"
                           placeholder="123 Main St"
+                          className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
                           {...field}
                         />
                       </FormControl>
@@ -133,7 +138,12 @@ export function Signup({ onSubmit, title }) {
                     <FormItem>
                       <FormLabel>City</FormLabel>
                       <FormControl>
-                        <Input type="text" placeholder="Anytown" {...field} />
+                        <Input
+                          type="text"
+                          placeholder="Anytown"
+                          className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -144,9 +154,14 @@ export function Signup({ onSubmit, title }) {
                   name="address_state"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>City</FormLabel>
+                      <FormLabel>State</FormLabel>
                       <FormControl>
-                        <Input type="text" placeholder="Anytown" {...field} />
+                        <Input
+                          type="text"
+                          placeholder="Anytown"
+                          className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -159,7 +174,12 @@ export function Signup({ onSubmit, title }) {
                     <FormItem>
                       <FormLabel>Country</FormLabel>
                       <FormControl>
-                        <Input type="text" placeholder="USA" {...field} />
+                        <Input
+                          type="text"
+                          placeholder="USA"
+                          className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -172,13 +192,18 @@ export function Signup({ onSubmit, title }) {
                     <FormItem>
                       <FormLabel>Zipcode</FormLabel>
                       <FormControl>
-                        <Input type="text" placeholder="12345" {...field} />
+                        <Input
+                          type="text"
+                          placeholder="12345"
+                          className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                <Button type="submit" className="w-full">
+                <Button type="submit" className="w-full bg-blue-500 text-white p-3 rounded-lg font-semibold hover:bg-blue-600 transition duration-300">
                   Signup
                 </Button>
               </form>
@@ -191,3 +216,4 @@ export function Signup({ onSubmit, title }) {
 }
 
 export default Signup;
+

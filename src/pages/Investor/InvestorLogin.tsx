@@ -1,15 +1,14 @@
 import Login from "@/components/Login";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinnet";
 import { useToast } from "@/components/ui/use-toast";
-import { login, /*reset */} from "@/store/auth/authSlice";
-import { investorLogin, reset } from "@/store/auth/investorAuthSlice";
+import { login, reset } from "@/store/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const InvestorLogin = () => {
   const { user, isLoading, isError, isSuccess, message } = useAppSelector(
-    (state) => state.investorAuth
+    (state) => state.auth
   );
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -41,7 +40,7 @@ const InvestorLogin = () => {
       user_email: String(data.email),
       user_password: String(data.password),
     };
-    dispatch(investorLogin(userData));
+    dispatch(login(userData));
   };
 
   if (isLoading) {

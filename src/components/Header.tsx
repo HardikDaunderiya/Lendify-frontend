@@ -10,7 +10,6 @@ import { ModeToggle } from "./mode-toggle";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { logout, reset } from "@/store/auth/authSlice";
 import { clearAccessToken } from "@/lib/helper";
-// import { logout } from "@/store/slices/authSlice"; // Assuming you have a logout action in your authSlice
 
 export default function Component() {
   const dispatch = useAppDispatch();
@@ -20,15 +19,15 @@ export default function Component() {
   const signout = () => {
     dispatch(logout());
     clearAccessToken();
-    //Remove acess token
-    //Remove User Info
+    // Remove access token
+    // Remove User Info
     localStorage.removeItem("userInfo");
 
     navigate("/home");
   };
 
   return (
-    <header className="w-full border border-grey rounded-sm py-4 px-6 md:px-10 flex items-center justify-between border-purple-900">
+    <header className="w-full border border-grey rounded-sm py-4 px-4 md:px-10 flex items-center justify-between bg-white shadow-sm">
       <Link to="#" className="flex items-center gap-2">
         <MountainIcon className="h-6 w-6" />
         <span className="text-xl font-bold">Lendmefy</span>

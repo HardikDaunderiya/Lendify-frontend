@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
+      {/* Hero Section */}
       <section className="relative w-full h-screen bg-gray-900">
         <img
           src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
@@ -37,13 +38,15 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Featured Investment Opportunities Section */}
       <section className="py-12 md:py-20">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col items-center mb-8 md:mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-2 text-custom-purple">
               Featured Investment Opportunities
             </h2>
-            <p className="text-gray-500 max-w-md">
+            <p className="text-gray-500 max-w-md text-center">
               Explore our curated selection of the best investment
               opportunities.
             </p>
@@ -99,13 +102,15 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Featured Business Opportunities Section */}
       <section className="py-12 md:py-20">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col items-center mb-8 md:mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-2 text-custom-purple">
               Featured Business Opportunities
             </h2>
-            <p className="text-gray-500 max-w-md">
+            <p className="text-gray-500 max-w-md text-center">
               Discover the best business opportunities to invest in.
             </p>
           </div>
@@ -159,3 +164,4 @@ export default function Home() {
     </div>
   );
 }
+

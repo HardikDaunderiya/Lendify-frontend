@@ -9,7 +9,8 @@ const BusinessFilters = ({
 }) => {
   return (
     <>
-      <div className="flex items-center space-x-4">
+      {/* Sort Buttons */}
+      <div className="flex flex-wrap items-center justify-center gap-4 mb-4 w-full">
         <Button
           variant={sortBy === "name" ? "default" : "outline"}
           onClick={() => handleSort("business_owner_firstname")}
@@ -29,7 +30,9 @@ const BusinessFilters = ({
           Sort by Location
         </Button>
       </div>
-      <div className="flex items-center space-x-4">
+
+      {/* Filter Buttons */}
+      <div className="flex flex-wrap items-center justify-center gap-4 w-full">
         <Button
           variant={
             filteredBusinesses?.length === businesses?.length
@@ -96,3 +99,4 @@ const BusinessFilters = ({
 };
 
 export default BusinessFilters;
+

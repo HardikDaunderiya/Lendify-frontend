@@ -22,18 +22,6 @@ const loginSchema = z.object({
 });
 
 export function Login({ title, onSubmit }) {
-  // const router = useRouter();
-  // const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     router.replace("/dashboard"); // Redirect to the desired page
-  //   }
-  // }, [isAuthenticated, router]);
-
-  // if (isAuthenticated) {
-  //   return null; // Render nothing while redirecting
-  // }
-
   const form = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -43,8 +31,8 @@ export function Login({ title, onSubmit }) {
   });
 
   return (
-    <div className="flex items-center justify-center min-h-screen ">
-      <div className="w-full max-w-md p-8 space-y-6  rounded-lg border bg-card text-card-foreground shadow-sm">
+    <div className="flex items-center justify-center min-h-screen p-4 sm:p-6 md:p-8 bg-gray-100">
+      <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-sm border border-gray-200">
         <h2 className="text-2xl font-bold text-center">{title}</h2>
 
         <Form {...form}>
@@ -59,6 +47,7 @@ export function Login({ title, onSubmit }) {
                     <Input
                       type="email"
                       placeholder="you@example.com"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
                       {...field}
                     />
                   </FormControl>
@@ -77,6 +66,7 @@ export function Login({ title, onSubmit }) {
                     <Input
                       type="password"
                       placeholder="Your password"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
                       {...field}
                     />
                   </FormControl>
@@ -85,7 +75,9 @@ export function Login({ title, onSubmit }) {
                 </FormItem>
               )}
             />
-            <Button type="submit">Login</Button>
+            <Button type="submit" className="w-full bg-blue-500 text-white p-3 rounded-lg font-semibold hover:bg-blue-600 transition duration-300">
+              Login
+            </Button>
           </form>
         </Form>
       </div>
@@ -94,3 +86,4 @@ export function Login({ title, onSubmit }) {
 }
 
 export default Login;
+

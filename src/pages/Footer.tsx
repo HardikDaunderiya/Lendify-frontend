@@ -3,8 +3,8 @@ import React from "react";
 const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-900 text-white py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-5 gap-8">
-        <div className="md:col-span-1">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+        <div className="lg:col-span-1">
           <h2 className="text-lg font-semibold mb-4">Lendmefy</h2>
           <div className="flex space-x-4">
             <a href="#" aria-label="Facebook">
@@ -18,7 +18,9 @@ const Footer: React.FC = () => {
             </a>
           </div>
         </div>
-        <div className="md:col-span-1">
+
+        {/* Support Section */}
+        <div className="lg:col-span-1">
           <h3 className="text-lg font-semibold mb-4">Support</h3>
           <ul className="space-y-2">
             <li>
@@ -53,8 +55,10 @@ const Footer: React.FC = () => {
             </li>
           </ul>
         </div>
-        <div className="md:col-span-1">
-          <h3 className="text-lg font-semibold mb-4">SERVICES</h3>
+
+        {/* Services Section */}
+        <div className="lg:col-span-1">
+          <h3 className="text-lg font-semibold mb-4">Services</h3>
           <ul className="space-y-2">
             <li>
               <a href="#" className="hover:text-gray-300">
@@ -88,8 +92,10 @@ const Footer: React.FC = () => {
             </li>
           </ul>
         </div>
-        <div className="md:col-span-1">
-          <h3 className="text-lg font-semibold mb-4">HOW DOES IT WORK</h3>
+
+        {/* How Does It Work Section */}
+        <div className="lg:col-span-1">
+          <h3 className="text-lg font-semibold mb-4">How Does It Work</h3>
           <ul className="space-y-2">
             <li>
               <a href="#" className="hover:text-gray-300">
@@ -123,13 +129,17 @@ const Footer: React.FC = () => {
             </li>
           </ul>
         </div>
-        <div className="md:col-span-1">
-          <h3 className="text-lg font-semibold mb-4">CONTACT US</h3>
+
+        {/* Contact Us Section */}
+        <div className="lg:col-span-1">
+          <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
           <p className="mb-2">+1 123 1234 5678</p>
           <p className="mb-2">Hello@Cld.com</p>
           <p>New York, USA</p>
         </div>
       </div>
+
+      {/* Footer Bottom Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 border-t border-gray-700 pt-8 text-center text-sm text-gray-400">
         All Rights Reserved For Waqp Design
       </div>
@@ -197,3 +207,5 @@ const TwitterIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
 };
 
 export default Footer;
+
+

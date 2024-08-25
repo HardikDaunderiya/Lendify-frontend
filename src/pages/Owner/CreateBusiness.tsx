@@ -179,8 +179,8 @@ export default function CreateBusiness() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="border p-4 rounded-lg shadow-md border-purple-900">
+    <div className="flex items-center justify-center min-h-screen p-4 sm:p-6 md:p-8 bg-gray-100">
+      <div className="w-full max-w-lg p-6 bg-white border border-purple-900 rounded-lg shadow-md">
         <Button
           variant="outline"
           onClick={() => navigate("/owner/mybusiness")}
@@ -189,7 +189,7 @@ export default function CreateBusiness() {
           Back to My Business
         </Button>
         <h2 className="text-2xl font-bold text-center mb-4">Create Business</h2>
-        <ScrollArea className="h-[500px] w-[500px] overflow-y-auto">
+        <ScrollArea className="h-[500px] max-h-[80vh] w-full overflow-y-auto">
           <div className="p-4 space-y-4 rounded-lg border">
             <Form {...form}>
               <form
@@ -444,7 +444,7 @@ export default function CreateBusiness() {
                     />
                   </>
                 )}
-                <div className="flex justify-between">
+                <div className="flex justify-between flex-wrap gap-4">
                   {currentStep > 1 && (
                     <Button variant="outline" onClick={handlePrevStep}>
                       Back
